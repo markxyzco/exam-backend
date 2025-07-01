@@ -21,7 +21,8 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/current_user', (req, res) => {
-  res.send(req.user || null);
+  res.status(200).json(req.user || null);
 });
+
 
 module.exports = router;
