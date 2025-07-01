@@ -20,7 +20,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // ✅ APPLY CORS AT THE VERY TOP
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );

@@ -10,13 +10,13 @@ router.get(
   '/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/',
-    successRedirect: 'http://localhost:5173/dashboard',
+    successRedirect: process.env.FRONTEND_URL + '/dashboard',
   })
 );
 
 router.get('/logout', (req, res) => {
   req.logout(() => {
-    res.redirect('http://localhost:5173');
+    res.redirect(process.env.FRONTEND_URL);
   });
 });
 
