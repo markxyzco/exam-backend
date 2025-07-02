@@ -21,8 +21,11 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/current_user', (req, res) => {
+  console.log('Session:', req.session);
+  console.log('User:', req.user);
   res.status(200).json(req.user || null);
 });
+
 
 
 module.exports = router;
