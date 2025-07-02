@@ -28,6 +28,7 @@ app.use(
 );
 
 app.use(express.json());
+app.set('trust proxy', 1); // ✅ Trust proxy for secure cookies
 
 // ✅ Use PostgreSQL to store sessions
 app.use(

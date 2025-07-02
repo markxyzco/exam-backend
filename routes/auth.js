@@ -10,9 +10,14 @@ router.get(
   '/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/',
-    successRedirect: process.env.FRONTEND_URL + '/dashboard',
-  })
+  }),
+  (req, res) => {
+    req.session.save(() => {
+      res.redirect(process.env.FRONTEND_URL + '/dashboard');
+    });
+  }
 );
+
 
 router.get('/logout', (req, res) => {
   req.logout(() => {
@@ -21,10 +26,13 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/current_user', (req, res) => {
-  console.log('Session:', req.session);
-  console.log('User:', req.user);
+  console.log("Session ID:", req.sessionID);
+  console.log("Session:", req.session);
+  console.log("User:", req.user);
   res.status(200).json(req.user || null);
 });
+
+
 
 
 
