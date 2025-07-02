@@ -34,19 +34,21 @@ app.use(
   session({
     store: new pgSession({
       pool: pool,
-      tableName: 'session', // This will be auto-created if not present
+      tableName: 'session',
+      createTableIfMissing: true, // ✅ NEW LINE
     }),
-    secret: 'supersecretdevkey12345677', // Ideally from .env
+    secret: 'supersecretdevkey12345677',
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: true,        // ✅ Vercel + Render are HTTPS, so use secure cookies
+      secure: true,
       httpOnly: true,
-      sameSite: 'none',    // ✅ Required for cross-origin session sharing
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+      sameSite: 'none',
+      maxAge: 30 * 24 * 60 * 60 * 1000,
     },
   })
 );
+
 
 // ✅ Passport setup
 app.use(passport.initialize());
